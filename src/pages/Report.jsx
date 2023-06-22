@@ -4,7 +4,7 @@ import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Context
 import { ordersData, contextMenuItems, ordersGrid } from '../data/dummy';
 import { Header } from '../components';
 
-const Orders = () => {
+const Report = () => {
   return (
     <div className="m-2 md-m-10 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Orders" />
@@ -25,4 +25,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default Report

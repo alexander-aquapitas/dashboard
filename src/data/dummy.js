@@ -1,7 +1,7 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
+import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock, AiOutlineUnorderedList } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft, BsMap } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
 import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
@@ -470,84 +470,22 @@ export const employeesGrid = [
 ];
 
 export const links = [
-  {
-    title: 'Dashboard',
-    links: [
       {
-        name: 'ecommerce',
-        icon: <FiShoppingBag />,
-      },
-    ],
-  },
-
-  {
-    title: 'Pages',
-    links: [
-      {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        name: 'dashboard',
+        icon: <BsMap />,
       },
       {
-        name: 'employees',
-        icon: <IoMdContacts />,
-      },
-      {
-        name: 'customers',
-        icon: <RiContactsLine />,
-      },
-    ],
-  },
-  {
-    title: 'Apps',
-    links: [
-      {
-        name: 'calendar',
+        name: 'schedule',
         icon: <AiOutlineCalendar />,
       },
       {
-        name: 'kanban',
-        icon: <BsKanban />,
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    links: [
-      {
-        name: 'line',
-        icon: <AiOutlineStock />,
+        name: 'report',
+        icon: <FiEdit />,
       },
       {
-        name: 'area',
-        icon: <AiOutlineAreaChart />,
+        name: 'assets',
+        icon: <AiOutlineUnorderedList />,
       },
-
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: 'pie',
-        icon: <FiPieChart />,
-      },
-      {
-        name: 'financial',
-        icon: <RiStockLine />,
-      },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
-      },
-    ],
-  },
 ];
 
 export const cartData = [

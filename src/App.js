@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi';
+import { BsChatLeft } from 'react-icons/bs';
+//import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, Line } from './pages';
+import { Dashboard, Report, Schedule, Assets } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
 import './App.css'
 
 const App = () => {
-    const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
+    const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode, handleClick } = useStateContext();
 
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
         <BrowserRouter>
             <div className="flex relative dark:bg-main-dark-bg">
                 <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-                    <TooltipComponent content="Settings" position="Top">
+                    <TooltipComponent content="Chat" position="Top Left">
                         <button type="button" className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-                            onClick={() => setThemeSettings(true)}
+                            //onClick={() => setThemeSettings(true)}
+                            onClick={() => handleClick('chat')}
                             style={{ background: currentColor, borderRadius: '50%' }}
                         >
-                            <FiSettings />
+                            <BsChatLeft className="h-5 w-5"/>
                         </button>    
                     </TooltipComponent>
                 </div>
@@ -50,26 +52,11 @@ const App = () => {
                     {themeSettings && <ThemeSettings />}
                     <Routes>
                         {/* Dashboard */}
-                        <Route path="/" element={<Ecommerce />} />
-                        <Route path="/ecommerce" element={<Ecommerce />} />
-
-                        {/* Pages */}
-                        <Route path="/orders" element={<Orders />} />
-                        <Route path="/employees" element={<Employees />} />
-                        <Route path="/customers" element={<Customers />} />
-
-                        {/* Apps */}
-                        <Route path="/kanban" element={<Kanban />} />
-                        <Route path="/calendar" element={<Calendar />} />
-
-                        {/* Charts */}
-                        <Route path="/line" element={<Line />} />
-                        <Route path="/area" element={<Area />} />
-                        <Route path="/bar" element={<Bar />} />
-                        <Route path="/financial" element={<Financial />} />
-                        <Route path="/color-mapping" element={<ColorMapping />} />
-                        <Route path="/pyramid" element={<Pyramid />} />
-                        <Route path="/stacked" element={<Stacked />} />
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/schedule" element={<Schedule />} />
+                        <Route path="/report" element={<Report />} />
+                        <Route path="/assets" element={<Assets />} />
                     </Routes>
                 </div>
                 </div>

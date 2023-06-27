@@ -14,7 +14,7 @@ const Schedule = () => {
       >
         <Inject services={[Day,Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]} />
       </ScheduleComponent>
-
+        
     </div>
   )
 }

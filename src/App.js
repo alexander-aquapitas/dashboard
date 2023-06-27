@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { BsChatLeft } from 'react-icons/bs';
 //import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
+import { Navbar, Sidebar, ThemeSettings, Maps } from './components';
 import { Dashboard, Report, Schedule, Assets } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
-import './App.css'
+import './App.css';
+
 
 const App = () => {
-    const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode, handleClick } = useStateContext();
+    const { activeMenu, themeSettings, currentColor, currentMode, handleClick } = useStateContext();
 
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
@@ -53,6 +54,7 @@ const App = () => {
                     <Routes>
                         {/* Dashboard */}
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/maps" element={<Maps />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/schedule" element={<Schedule />} />
                         <Route path="/report" element={<Report />} />

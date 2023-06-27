@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai';
 import { RiNotification3Line } from 'react-icons/ri';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import avatar from '../data/avatar.jpg';
-import { Cart, Chat, Notification, UserProfile } from '.';
+import { Chat, Notification, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -18,10 +17,10 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
-  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, currentColor } = useStateContext();
+  const { setActiveMenu, isClicked, handleClick, screenSize, setScreenSize, currentColor } = useStateContext();
 
   useEffect(() => {
-    const handleResize = () => setScreenSize (window.innerWidth);
+    const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener('resize', handleResize);
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
@@ -42,11 +41,10 @@ const Navbar = () => {
         <NavButton title="Notifications" dotColor="#03C9D7" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
         <TooltipComponent content="Profile" position="BottomCenter">
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => handleClick('userProfile')}>
-            <img className="rounded-full w-8 h-8" src={avatar}/>
+            <img className="rounded-full w-8 h-8" src={avatar} alt='profile'/>
           </div>
         </TooltipComponent>
 
-        {isClicked.cart && (<Cart />)}
         {isClicked.chat && (<Chat />)}  
         {isClicked.notification && (<Notification />)}  
         {isClicked.userProfile && (<UserProfile/>)}    

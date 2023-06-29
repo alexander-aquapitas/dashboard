@@ -4,8 +4,8 @@ import { BsChatLeft } from 'react-icons/bs';
 //import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { Navbar, Sidebar, ThemeSettings, Maps } from './components';
-import { Dashboard, Report, Schedule, Assets } from './pages';
+import { Navbar, Sidebar, ThemeSettings } from './components';
+import { Dashboard, Report, Schedule, Assets, Customers } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
@@ -40,7 +40,7 @@ const App = () => {
                     </div>
                 )}
                 <div className={
-                    `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full 
+                    `dark:bg-main-dark-bg bg-gray-100 min-h-screen w-full 
                     ${activeMenu
                          ? 'md:ml-72' 
                          : 'flex-2'}`
@@ -54,11 +54,11 @@ const App = () => {
                     <Routes>
                         {/* Dashboard */}
                         <Route path="/" element={<Dashboard />} />
-                        <Route path="/maps" element={<Maps />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/assets" element={<Assets />} />
+                        <Route path="/customers" element={<Customers />} />
                         <Route path="/schedule" element={<Schedule />} />
                         <Route path="/report" element={<Report />} />
-                        <Route path="/assets" element={<Assets />} />
                     </Routes>
                 </div>
                 </div>

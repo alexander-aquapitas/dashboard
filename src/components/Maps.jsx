@@ -43,9 +43,10 @@ const Maps = () => {
     const { center, zoom, showLayer1, setShowLayer1, showLayer2, setShowLayer2, showMarker, features } = useStateContext();
 
     return(
-        <div className="flex-auto m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+        <div className="flex">
+        <div className="flex-auto m-2 md:m-4 p-2 md:p-4 bg-white rounded-3xl">
             <Header category="Network Map" title="Municipality" />
-            <Map center={fromLonLat(center)} zoom={zoom}>
+            <Map center={fromLonLat(center)} zoom={zoom} minZoom = {9}>
                 <Layers>
                     <TileLayer source={osm()} zIndex={0} />
                     {showLayer1 && (
@@ -74,7 +75,10 @@ const Maps = () => {
                     <FullScreenControl />
                 </Controls>
             </Map>
-            <div className="flex justify-center">
+        </div>
+        <div className="flex-auto m-2 md:m-4 p-2 md:p-6 bg-white rounded-3xl">
+            <Header category="Network Map" title="Options"/>
+            <div >
                 <input
                 type="checkbox"
                 checked={showLayer1}
@@ -82,7 +86,7 @@ const Maps = () => {
                 />{" "}
                 Johnson County
             </div>
-            <div className="flex justify-center">
+            <div >
                 <input
                 type="checkbox"
                 checked={showLayer2}
@@ -90,6 +94,7 @@ const Maps = () => {
                 />{" "}
                 Wyandotte County
             </div>
+        </div>
         </div>
     )
 }

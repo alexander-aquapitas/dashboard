@@ -40,29 +40,19 @@ function addMarkers(lonLatArray) {
   }
 
 const Maps = () => {
-    const { center, zoom, showLayer1, setShowLayer1, showLayer2, setShowLayer2, showMarker, features } = useStateContext();
+    const { center, zoom, showLayer1, setShowLayer1, showMarker, features } = useStateContext();
 
     return(
         <div className="flex">
         <div className="flex-auto m-2 md:m-4 p-2 md:p-4 bg-white rounded-3xl">
             <Header category="Network Map" title="Municipality" />
-            <Map center={fromLonLat(center)} zoom={zoom} minZoom = {9}>
+            <Map center={fromLonLat(center)} zoom={zoom} minZoom = {13}>
                 <Layers>
                     <TileLayer source={osm()} zIndex={0} />
                     {showLayer1 && (
                         <VectorLayer
                         source={vector({
                             features: new GeoJSON().readFeatures(geojsonObject, {
-                            featureProjection: get("EPSG:3857"),
-                            }),
-                        })}
-                        style={FeatureStyles.MultiPolygon}
-                        />
-                    )}
-                    {showLayer2 && (
-                        <VectorLayer
-                        source={vector({
-                            features: new GeoJSON().readFeatures(geojsonObject2, {
                             featureProjection: get("EPSG:3857"),
                             }),
                         })}
@@ -81,18 +71,11 @@ const Maps = () => {
             <div >
                 <input
                 type="checkbox"
+                id="outline"
                 checked={showLayer1}
                 onChange={(event) => setShowLayer1(event.target.checked)}
                 />{" "}
-                Johnson County
-            </div>
-            <div >
-                <input
-                type="checkbox"
-                checked={showLayer2}
-                onChange={(event) => setShowLayer2(event.target.checked)}
-                />{" "}
-                Wyandotte County
+                <label for="outline">Show Outline</label>
             </div>
         </div>
         </div>

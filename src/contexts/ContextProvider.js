@@ -4,17 +4,20 @@ import mapConfig from "../config.json";
 
 const StateContext = createContext();
 
-const initialState = {
-    chat: false,
-    userProfile: false,
-    notification: false,
-};
+
 
 export const ContextProvider = ({ children}) => {
+
+    const initialState = {
+        chat: false,
+        userProfile: false,
+        notification: false,
+    };
+
     const [activeMenu, setActiveMenu] = useState(true);
     const [isClicked, setIsClicked] = useState(initialState);
     const [screenSize, setScreenSize] = useState(500);
-    const [currentColor, setCurrentColor] = useState('#03C9D7');
+    const [currentColor, setCurrentColor] = useState('#1d7874');
     const [currentMode, setCurrentMode] = useState('Light');
     const [themeSettings, setThemeSettings] = useState(false);
 
@@ -43,11 +46,10 @@ export const ContextProvider = ({ children}) => {
 
     const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
 
-
     return (
         <StateContext.Provider value={{ activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, 
             currentColor, currentMode, themeSettings, setThemeSettings, setMode, setColor, center, setCenter, zoom, setZoom,
-            showLayer1, setShowLayer1, showLayer2, setShowLayer2, showMarker, setShowMarker, features, setFeatures }}
+            showLayer1, setShowLayer1, showLayer2, setShowLayer2, showMarker, setShowMarker, features, setFeatures, initialState }}
         >
             {children}
         </StateContext.Provider>

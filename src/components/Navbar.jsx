@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai';
 import { RiNotification3Line } from 'react-icons/ri';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import avatar from '../data/avatar.jpg';
+import avatar5 from '../data/avatar5.JPG';
 import { Chat, Notification, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 
@@ -16,8 +16,28 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   </TooltipComponent>
 );
 
+const useOutsideClick = (callback) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+
+    return () => {
+      document.removeEventListener('click', handleClick, true);
+    };
+  }, [ref]);
+
+  return ref;
+};
+
 const Navbar = () => {
-  const { setActiveMenu, isClicked, handleClick, screenSize, setScreenSize, currentColor } = useStateContext();
+  const { initialState, setActiveMenu, setIsClicked, isClicked, handleClick, screenSize, setScreenSize } = useStateContext();
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -34,20 +54,26 @@ const Navbar = () => {
     }
   }, [screenSize]);
 
+  const handleClickOutside = () => {
+    setIsClicked({ ...initialState});
+  };
+  
+  const ref = useOutsideClick(handleClickOutside);
+
   return (
     <div className="flex justify-between p-2 md:mx-0 relative hover:bg-white dark:hover:bg-light-gray">
-      <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color={currentColor} icon={<AiOutlineMenu/>} />
-      <div className="flex">
-        <NavButton title="Notifications" dotColor="#03C9D7" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
+      <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} icon={<AiOutlineMenu/>} />
+      <div className="flex" ref={ref}>
+        <NavButton title="Notifications" dotColor="#1d7874" customFunc={() => handleClick('notification')} icon={<RiNotification3Line />} />
         <TooltipComponent content="Profile" position="BottomCenter">
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => handleClick('userProfile')}>
-            <img className="rounded-full w-8 h-8" src={avatar} alt='profile'/>
+            <img className="rounded-full w-8 h-8" src={avatar5} alt='profile'/>
           </div>
         </TooltipComponent>
 
         {isClicked.chat && (<Chat />)}  
         {isClicked.notification && (<Notification />)}  
-        {isClicked.userProfile && (<UserProfile/>)}    
+        {isClicked.userProfile && (<UserProfile />)}    
       </div>
     </div>
   );
